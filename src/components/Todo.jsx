@@ -1,46 +1,80 @@
 import React, { useState } from "react";
-import TodoForm from "./TodoPage";
-import { RiCloseCircleLine } from "react-icons/ri";
-import { TiEdit } from "react-icons/ti";
+import AddList from "./AddList";
+import EditList from "./EditList";
 
-function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
-  const [edit, setEdit] = useState({
-    id: null,
-    value: "",
-  });
-
-  const submitUpdate = (value) => {
-    updateTodo(edit.id, value);
-    setEdit({
-      id: null,
-      value: "",
-    });
-  };
-
-  if (edit.id) {
-    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
-  }
-
-  return todos.map((todo, index) => (
-    <div
-      className={todo.isComplete ? "todo-row complete" : "todo-row"}
-      key={index}
-    >
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-        {todo.text}
-      </div>
-      <div className="icons">
-        <RiCloseCircleLine
-          onClick={() => removeTodo(todo.id)}
-          className="delete-icon"
-        />
-        <TiEdit
-          onClick={() => setEdit({ id: todo.id, value: todo.text })}
-          className="edit-icon"
-        />
+function Todo() {
+  const list = [
+    {
+      id: 1,
+      name: "Shubham",
+      creationDate: "7/2/2023",
+      age: "22",
+    },
+    {
+      id: 2,
+      name: "Ravani",
+      creationDate: "7/2/2023",
+      age: "24",
+    },
+  ];
+  const [lists, setList] = useState(list);
+  const [updateState, setUpdateState] = useState(-1);
+  return (
+    <div className="crud">
+      <div>
+        <AddList setList={setList} />
+        <form onSubmit={handleSubmit}>
+          <table>
+            {lists.map((current) =>
+              updateState === current.id ? (
+                <EditList current={current} lists={lists} setList={setList} />
+              ) : (
+                <tr>
+                  <td>{current.creationDate}</td>
+                  <td>{current.name}</td>
+                  <td>{current.age}</td>
+                  <td>
+                    <button
+                      className="edit"
+                      onClick={() => handleEdit(current.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete"
+                      type="button"
+                      onClick={() => handleDelete(current.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
+          </table>
+        </form>
       </div>
     </div>
-  ));
+  );
+
+  function handleEdit(id) {
+    setUpdateState(id);
+  }
+  function handleDelete(id) {
+    const newlist = lists.filter((li) => li.id !== id);
+    setList(newlist);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const name = event.target.elements.name.value;
+    const age = event.target.elements.age.value;
+    const newlist = lists.map((li) =>
+      li.id === updateState ? { ...li, name: name, age: age } : li
+    );
+
+    setList(newlist);
+    setUpdateState(-1);
+  }
 }
 
 export default Todo;

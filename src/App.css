@@ -36,93 +36,64 @@ h1 {
   font-size: 44px;
 }
 
-.complete {
-  text-decoration: line-through;
-  opacity: 0.4;
+.crud {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.todo-form {
-  margin-bottom: 32px;
+table td {
+  width: 200px;
+  height: 30px;
+  background-color: rgb(54, 135, 211);
+  text-align: center;
+  color: white;
 }
 
-.todo-input {
-  padding: 14px 32px 14px 16px;
-  border-radius: 4px 0 0 4px;
-  border: 2px solid #5d0cff;
-  outline: none;
-  width: 320px;
-  color: #000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.todo-input::placeholder {
-  color: #000;
-}
-
-.todo-button {
-  padding: 16px;
-  border: none;
-  border-radius: 0 4px 4px 0;
+table td button {
+  padding: 5px 10px;
+  border-radius: 5%;
   cursor: pointer;
-  outline: none;
-  background: #5d0cff;
-  color: #fff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+table td button.edit {
+  border: 1px solid green;
+  background-color: rgb(7, 168, 7);
+  color: white;
+}
+table td button.edit:hover {
+  background-color: rgb(3, 71, 3);
+}
+table td button.delete {
+  border: 1px solid red;
+  background-color: rgb(219, 19, 19);
+  color: white;
+}
+table td button.delete:hover {
+  background-color: rgb(92, 5, 5);
 }
 
-.todo-button:hover {
-  text-transform: uppercase;
+.addForm {
+  margin-bottom: 30px;
 }
-
-.todo-input.edit {
-  border: 2px solid #0129b6;
+.addForm input {
+  width: 230px;
+  height: 30px;
 }
-
-.todo-button.edit {
-  background: #5d0cff;
-  padding: 16px 22px;
+.addForm button {
+  width: 135px;
+  color: white;
+  height: 35px;
+  background-color: rgb(31, 171, 31);
+}
+.addForm button:hover {
+  background-color: rgb(5, 86, 5);
 }
 
 .todo-container {
   display: flex;
   flex-direction: row;
   position: relative;
-}
-
-.todo-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 8px auto;
-  width: 100% !important;
-  color: #fff;
-  background: #5d0cff;
-  padding: 12px;
-  border-radius: 5px;
-  width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.icons {
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.delete-icon {
-  margin-right: 5px;
-  color: #fff;
-}
-
-.delete-icon:hover,
-.edit-icon:hover {
-  font-size: larger;
-  color: #a882f3;
-}
-
-.edit-icon {
-  color: #fff;
 }
 
 @media (min-width: 320px) and (max-width: 650px) {
